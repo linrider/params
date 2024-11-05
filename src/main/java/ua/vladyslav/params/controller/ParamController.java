@@ -62,20 +62,20 @@ public class ParamController {
             @RequestParam(name = "currency2") String currency2,
             @PathVariable(name = "amount") int amount) {
 
-        final Map<String, Double> exchangRates = new HashMap<>();
-        exchangRates.put("UAH_TO_USD", .0272);
-        exchangRates.put("UAH_TO_PLN", .0971);
-        exchangRates.put("PLN_TO_USD", .2508);
-        exchangRates.put("PLN_TO_UAH", 10.4084);
-        exchangRates.put("USD_TO_PLN", 4.41);
-        exchangRates.put("USD_TO_UAH", 41.4068);
+        final Map<String, Double> exchangeRates = new HashMap<>();
+        exchangeRates.put("UAH_TO_USD", .0272);
+        exchangeRates.put("UAH_TO_PLN", .0971);
+        exchangeRates.put("PLN_TO_USD", .2508);
+        exchangeRates.put("PLN_TO_UAH", 10.4084);
+        exchangeRates.put("USD_TO_PLN", 4.41);
+        exchangeRates.put("USD_TO_UAH", 41.4068);
 
         StringBuilder stringBuilder = new StringBuilder(9);
         stringBuilder.append(currency1.toUpperCase());
         stringBuilder.append("_TO_");
         stringBuilder.append(currency2.toUpperCase());
 
-        System.out.println(amount * exchangRates.get(stringBuilder.toString()));
+        System.out.println(amount * exchangeRates.get(stringBuilder.toString()));
 
         return "empty";
     }

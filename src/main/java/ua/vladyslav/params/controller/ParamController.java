@@ -25,15 +25,15 @@ public class ParamController {
     а також два реквест параметри a та b і виконує цю операцію над ними і результат виводить в консоль.
     ВИкористовувати switch case */
     
-    @GetMapping("/calc")
-    public String getCalculator(@RequestParam(name = "arg1") float arg1, 
-                                @RequestParam(name = "arg2") float arg2, 
-                                @RequestParam(name = "action") String action) {
+    @GetMapping("/calc/{action}/{arg1}/{arg2}")
+    public String getCalculator(@PathVariable(name = "arg1") float arg1, 
+                                @PathVariable(name = "arg2") float arg2, 
+                                @PathVariable(name = "action") String action) {
             System.out.println(switch(action) {
-                case "+" -> arg1 + arg2;
-                case "-" -> arg1 - arg2;
-                case "*" -> arg1 * arg2;
-                case "/" -> arg1 / arg2;
+                case "plus" -> arg1 + arg2;
+                case "minus" -> arg1 - arg2;
+                case "multiply" -> arg1 * arg2;
+                case "divide" -> arg1 / arg2;
                 default -> "Something went wrong";
             });
         return "Main";

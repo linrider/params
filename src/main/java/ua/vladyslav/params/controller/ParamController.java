@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,13 +13,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/api")
 public class ParamController {
+    
     @GetMapping()
     public String getUserInfo(@RequestParam(name = "name", required = false, defaultValue = "anonime") String name,
-            @RequestParam("age") int age) {
+            @RequestParam("age") int age, Model model) {
+        model.addAttribute("name", name);
+        model.addAttribute("age", age);
+        
         System.out.println(String.format("Hello %s, %d", name, age));
-        return "empty";
+        return "welcome-page";
 
     }
+
+    @GetMapping("/login")
+    public String getLoginPage() {
+        return "reg-page";
+    }
+    
 
     @GetMapping("/{age}")
     public String getUserInfo1(@RequestParam(name = "name", required = false, defaultValue = "anonime") String name,
@@ -79,5 +90,7 @@ public class ParamController {
 
         return "empty";
     }
+
+
 
 }
